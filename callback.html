@@ -1,1 +1,18 @@
-
+<!DOCTYPE html>
+<html>
+<head><title>ClipPoster - Connecting...</title></head>
+<body>
+<h2>Connecting to ClipPoster...</h2>
+<p id="status">Sending authorization code...</p>
+<script>
+  const params = window.location.search;
+  fetch('http://localhost:8723/callback/' + params)
+    .then(() => {
+      document.getElementById('status').textContent = 'Connected! You can close this tab.';
+    })
+    .catch(() => {
+      document.getElementById('status').textContent = 'Done! You can close this tab.';
+    });
+</script>
+</body>
+</html>
