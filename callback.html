@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head><title>ClipPoster - Connecting...</title></head>
-<body>
-<h2>Connecting to ClipPoster...</h2>
-<p id="status">Sending authorization code...</p>
+<head><title>ClipPoster Auth</title></head>
+<body style="font-family:sans-serif;max-width:500px;margin:80px auto;text-align:center">
+<h2>One more step!</h2>
+<p>Copy this code and paste it into the ClipPoster dashboard:</p>
+<input id="c" style="width:100%;padding:10px;font-size:11px;margin:10px 0;word-break:break-all" readonly />
+<br/>
+<button onclick="navigator.clipboard.writeText(document.getElementById('c').value);this.textContent='Copied!'" 
+        style="padding:10px 24px;background:#00c4cc;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:14px">
+  Copy Code
+</button>
 <script>
-  const params = window.location.search;
-  fetch('http://localhost:8723/callback/' + params)
-    .then(() => {
-      document.getElementById('status').textContent = 'Connected! You can close this tab.';
-    })
-    .catch(() => {
-      document.getElementById('status').textContent = 'Done! You can close this tab.';
-    });
+  document.getElementById('c').value = new URLSearchParams(window.location.search).get('code') || 'No code found';
 </script>
 </body>
 </html>
